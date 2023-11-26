@@ -1,0 +1,20 @@
+{
+    "canisters": {
+        "my-canister-project": {
+            "type": "custom",
+            "main": "src/index.ts",
+            "candid": "src/index.did",
+            "build": "npx azle my-canister-project",
+            "wasm": ".azle/my-canister-project/my-canister-project.wasm",
+            "gzip": true
+        },
+        "build": {
+            "type": "custom",
+            "main": "src/index.ts",
+            "build": "npx azle build",
+            "candid": "src/index.did",
+            "wasm": ".azle/build/build.wasm"
+        }
+    }
+}
+
