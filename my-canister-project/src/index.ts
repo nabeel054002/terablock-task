@@ -1,12 +1,6 @@
 import { Canister, Variant, text, Principal, update, Void, nat32, blob, Vec, nat64, CandidType } from 'azle';
 import { query } from 'azle';
 
-const Approvalv = Variant({
-  from: text,
-  to: text,
-  value: nat64,
-});
-
 interface Approval {
   from: string;
   to: string;
@@ -22,17 +16,7 @@ export default Canister({
 
   // Adds an approval to the end of the array
   addApproval: update([blob], Void, (approval: any) => {
-    approvals.push(approval); // This change will be persisted
-  }),
-
-  // Removes the very first element of the array and returns it
-  executeApproval: query([], approval, () => {
-    if (approvals.length > 0) {
-      const executedApproval = approvals.splice(0, 1)[0];
-      return executedApproval;
-    } else {
-      return null;
-    }
+    approvals.push(approval);
   }),
 
   // Returns the recent n approvals
@@ -49,7 +33,8 @@ export default Canister({
       }
       return serializedApprovals;
     } else {
-      return [];
+      //not enough size of the array, hence returning complete array
+      return approvals;
     }
   }),
 });

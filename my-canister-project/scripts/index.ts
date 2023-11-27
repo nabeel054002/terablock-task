@@ -1,7 +1,7 @@
 //to modify when  the debugging of the deployment ofd canister finishes
 const azle = require('azle');
 
-const canisterId = 'br5f7-7uaaa-aaaaa-qaaca-cai'; // Replace with your canister ID
+const canisterId = ''; // Replace with your canister ID
 
 const canister = azle.createCanister(canisterId);
 
