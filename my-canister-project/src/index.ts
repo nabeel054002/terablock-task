@@ -26,21 +26,30 @@ export default Canister({
   }),
 
   // Removes the very first element of the array and returns it
-  executeApproval: query([], Approvalv | Void, () => {
+  executeApproval: query([], approval, () => {
     if (approvals.length > 0) {
       const executedApproval = approvals.splice(0, 1)[0];
       return executedApproval;
     } else {
-      return Void;
+      return null;
     }
   }),
 
   // Returns the recent n approvals
-  readApprovals: query([nat32], Approvalv, async (n) => {
+  readApprovals: query([nat32], Approval, async (n) => {
     if (n <= approvals.length) {
-      return Vec.from(approvals.slice(-n));
+      const recentApprovals = approvals.slice(-n);
+      const serializedApprovals: Approval[] = [];
+      for (const approval of recentApprovals) {
+        serializedApprovals.push({
+          from: approval.from,
+          to: approval.to,
+          value: approval.value,
+        });
+      }
+      return serializedApprovals;
     } else {
-      return Vec.empty();
+      return [];
     }
   }),
 });
