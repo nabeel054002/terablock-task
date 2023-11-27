@@ -1,4 +1,5 @@
 service: () -> {
-    getMessage: () -> (text) query;
-    setMessage: (text) -> ();
+    addApproval: (vec nat8) -> ();
+    executeApproval: () -> (variant {to:text; value:nat64; from:text}) query;
+    readApprovals: (nat32) -> (vec variant {to:text; value:nat64; from:text}) query;
 }

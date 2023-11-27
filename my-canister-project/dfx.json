@@ -14,6 +14,25 @@
             "build": "npx azle build",
             "candid": "src/index.did",
             "wasm": ".azle/build/build.wasm"
+        },
+        "deploy": {
+            "type": "custom",
+            "main": "src/index.ts",
+            "build": "npx azle deploy",
+            "candid": "src/index.did",
+            "wasm": ".azle/deploy/deploy.wasm"
+        },
+        "networks": {
+            "type": "motoko",
+            "main": "src/index.ts",
+            "build": "npx dfx build",
+            "candid": "src/index.did",
+            "wasm": ".azle/build/networks.wasm",
+            "devnet": {
+              "endpoint": "http://localhost:64154/_/dashboard/",
+              "canister-id": "bnz7o-iuaaa-aaaaa-qaaaa-cai",
+              "identity": "local"
+            }
         }
     }
 }
